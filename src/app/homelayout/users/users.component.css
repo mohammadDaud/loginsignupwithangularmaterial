@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+  .edit-icon{
+    color: #4cae4c;
+  }
+  .view-icon{
+    color:#f0ad4e;
+  }
+  .delete-icon{
+    color:#d9534f;
+  }

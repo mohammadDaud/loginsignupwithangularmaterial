@@ -1,0 +1,29 @@
+<button class="close" style="float: right;" mat-button (click)="close()">X</button>
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<mat-dialog-content>
+    <p> View User Details</p>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{data.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>UserName</td>
+                        <td>{{data.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{data.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Join</td>
+                        <td>{{data.createdBy}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</mat-dialog-content>

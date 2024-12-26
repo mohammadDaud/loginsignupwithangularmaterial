@@ -1,0 +1,31 @@
+<button class="close" style="float: right;" mat-button (click)="close()">X</button>
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<mat-dialog-content>
+    <p> Edit User Details here</p>
+    <form class="example-form" name="form" (ngSubmit)="editForm.valid && onSubmit(data)"
+        #editForm="ngForm" novalidate>
+            <mat-form-field class="example-full-width" data-validate="Please enter Name">
+                <input matInput  type="text"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="data.name" #name="ngModel">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" data-validate="Please enter UserName">
+                <input matInput type="text"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="data.username" #username="ngModel">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" data-validate="Please enter Email">
+                <input matInput type="text"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="data.email" #email="ngModel">
+            </mat-form-field>
+
+            <div class="example-button-row">
+                <button mat-stroked-button color="primary" type="submit" class="btn-block">Save</button>
+            </div>
+            <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="editForm.submitted && isLoginFailed">
+                    Edit failed: {{ errorMessage }}
+                </div>
+            </div>
+    </form>
+</mat-dialog-content>

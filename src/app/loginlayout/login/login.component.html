@@ -1,0 +1,70 @@
+<mat-drawer-content>
+    <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+        
+        <mat-card class="box">
+            <form *ngIf="!isLoggedIn" class="example-form" name="form"
+                (ngSubmit)="loginForm.valid && onSubmit(loginForm)" #loginForm="ngForm" novalidate>
+                <mat-card-header>
+                    <mat-card-title>
+                        <span class="material-icons">account_circle</span>
+                        <span class="sign">Sign in</span>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field class="example-full-width" data-validate="Please enter email">
+                        <input matInput type="text" name="usernameOrEmail" id="usernameOrEmail"
+                            placeholder="UserName Or Email" [(ngModel)]="model.usernameOrEmail" required
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && usernameOrEmail.invalid }"
+                            #usernameOrEmail="ngModel">
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="loginForm.submitted && usernameOrEmail.invalid">
+                        UserName or Email is required!
+                    </div>
+
+                    <mat-form-field class="example-full-width" data-validate="Please enter password">
+                        <input matInput type="password" name="password" placeholder="Password" id="password"
+                            [(ngModel)]="model.password" minlength="5" #password="ngModel" required>
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="loginForm.submitted && password.invalid">
+                        Password is required
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="password.hasError('minlength')">
+                        Password must be at least 5 characters
+                    </div>
+                </mat-card-content>
+                <div class="example-label">
+                    Forget<a [routerLink]="['/forget']" routerLinkActive="router-link-active" mat-button
+                        color="primary">Password?
+                    </a>
+                </div>
+
+                <div class="example-button-row">
+                    <button mat-stroked-button color="primary" type="submit" class="btn-block">
+                        Sign in
+                    </button>
+                </div>
+
+                <div class="example-button-row">
+                    <span class="txt1 p-b-9">
+                        Don’t have an account?</span>
+                    <a [routerLink]="['/signup']" routerLinkActive="router-link-active" mat-button color="primary">
+                        Sign up now
+                    </a>
+                </div>
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="loginForm.submitted && isLoginFailed">
+                        Login failed: {{ errorMessage }}
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+    </div>
+</mat-drawer-content>
+<div class="overlay" *ngIf="resourcesLoaded === true">
+    <div class="center">
+        <mat-progress-spinner diameter="100" mode="indeterminate" color="warn">
+        </mat-progress-spinner>
+    </div>
+</div>
+
+

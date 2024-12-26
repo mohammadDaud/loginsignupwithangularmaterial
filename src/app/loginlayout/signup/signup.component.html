@@ -1,0 +1,73 @@
+<mat-drawer-content>
+    <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="box">
+            <form *ngIf="!isLoggedIn" class="example-form" name="form"
+                (ngSubmit)="signupForm.valid && onSubmit(signupForm)" #signupForm="ngForm" novalidate>
+                <mat-card-header>
+                    <mat-card-title>
+                        <span class="material-icons">account_circle</span>
+                        <span class="sign">Sign up</span>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card-actions>
+                    <mat-form-field class="example-full-width" data-validate="Please enter Name">
+                        <input matInput type="text" name="name" id="name" placeholder="Name" [(ngModel)]="model.name"
+                            required [ngClass]="{ 'is-invalid': signupForm.submitted && name.invalid }" #name="ngModel">
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="signupForm.submitted && name.invalid">
+                        Name is required!
+                    </div>
+
+                    <mat-form-field class="example-full-width" data-validate="Please enter UserName">
+                        <input matInput type="text" name="username" id="username" placeholder="UserName"
+                            [(ngModel)]="model.username" required
+                            [ngClass]="{ 'is-invalid': signupForm.submitted && username.invalid }" #username="ngModel">
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="signupForm.submitted && username.invalid">
+                        Name is required!
+                    </div>
+
+                    <mat-form-field class="example-full-width" data-validate="Please enter Email">
+                        <input matInput type="email" name="email" id="email" placeholder="Email"
+                            [(ngModel)]="model.email" required
+                            [ngClass]="{ 'is-invalid': signupForm.submitted && email.invalid }" #email="ngModel">
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="signupForm.submitted && email.invalid">
+                        Email is required!
+                    </div>
+
+                    <mat-form-field class="example-full-width" data-validate="Please enter password">
+                        <input matInput type="password" name="password" placeholder="Password" id="password"
+                            [(ngModel)]="model.password" minlength="5" #password="ngModel" required>
+                    </mat-form-field>
+                    <div class="alert alert-danger" role="alert" *ngIf="signupForm.submitted && password.invalid">
+                        Password is required
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="password.hasError('minlength')">
+                        Password must be at least 5 characters
+                    </div>
+            
+                    <div class="example-button-row">
+                        <button mat-stroked-button color="primary" type="submit" class="btn-block">Sign up</button>
+                    </div>
+
+                    <div class="example-button-row">
+                        <span class="txt1 p-b-9">
+                            Already have an account?
+                        </span>
+                        <a routerLink="/login" mat-button color="primary">Cancel </a>
+                    </div>
+                </mat-card-actions>
+                <mat-card-footer>
+                    <div class="form-group">
+                        <div class="alert alert-danger" role="alert" *ngIf="signupForm.submitted && isLoginFailed">
+                            signup failed: {{ errorMessage }}
+                        </div>
+                    </div>
+                </mat-card-footer>
+                </mat-card-content>
+            </form>
+        </mat-card>
+    </div>
+</mat-drawer-content>
